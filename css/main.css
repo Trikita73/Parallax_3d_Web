@@ -3,3 +3,37 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+:root {
+    --background: #030f1f;
+    --color: #8B99B9;
+    --color-border: #101D2E;
+    --gap: 30px;
+}
+
+@font-face {
+    font-family: Rosario;
+    src: url(../fonts/Rosario-Medium.woff2);
+}
+
+body {
+    overflow-x: hidden;
+    background: var(--background);
+    color: var(--color);
+    font-family: Rosario, sans-serif;
+    font-size: 14px;
+    line-height: 140%;
+    padding-bottom: 100vh;
+}
+
+header {
+    position: relative;
+    min-height: 100vh;
+    z-index: -1;
+}
+
+canvas {
+    display: block;
+    position: absolute;
+}
+
