@@ -32,6 +32,17 @@ header {
     z-index: -1;
 }
 
+header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url(../img/overlay.svg);
+    z-index: 1;
+    background-size: cover;
+    background-position: center;
+    backdrop-filter: saturate(1.04) hue-rotate(-4deg);
+}
+
 canvas {
     display: block;
     position: absolute;
