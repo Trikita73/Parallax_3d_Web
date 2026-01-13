@@ -43,6 +43,7 @@ header::before {
     backdrop-filter: saturate(1.04) hue-rotate(-4deg);
 }
 
+
 canvas {
     display: block;
     position: absolute;

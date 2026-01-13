@@ -11,7 +11,7 @@ import { VignetteShader } from 'three/addons/shaders/VignetteShader.js'
 const devMode = true
 
 const config = {
-  lighting: {
+  lighting: { 
     ambientIntensity: .55
   },
   camera: {
