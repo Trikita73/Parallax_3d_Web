@@ -8,7 +8,7 @@ import { OutputPass } from 'three/addons/postprocessing/OutputPass.js'
 import { FXAAShader } from 'three/addons/shaders/FXAAShader.js'
 import { VignetteShader } from 'three/addons/shaders/VignetteShader.js'
 
-const devMode = true
+const devMode = false
 
 const config = {
   lighting: { 
@@ -57,6 +57,17 @@ loader.load(
 
 scene.add(new THREE.AmbientLight('#fff', config.lighting.ambientIntensity))
 
+const pointLightFire = new THREE.PointLight('orange', 2.75)
+pointLightFire.position.set(-.75, .75, -1)
+
+const pointLightSide = new THREE.PointLight('red', .25)
+pointLightSide.position.set(.1, .4, -.35)
+
+const pointLightSide2 = new THREE.PointLight('white', .4)
+pointLightSide2.position.set(-.15, .4, -.35)
+
+scene.add(pointLightFire, pointLightSide, pointLightSide2)
+
 const fogColor = '#181818'
 scene.background = new THREE.Color(fogColor)
 scene.fog = new THREE.Fog(fogColor, 1, 5.75)
@@ -87,6 +98,23 @@ const composer = new EffectComposer(renderer)
 
 const renderPass = new RenderPass(scene, camera)
 composer.addPass(renderPass)
+
+const vignetteShader = VignetteShader
+const vignettePass = new ShaderPass(vignetteShader)
+vignettePass.uniforms['offset'].value = 1
+vignettePass.uniforms['darkness'].value = 1.009
+composer.addPass(vignettePass)
+
+const fxaaPass = new ShaderPass(FXAAShader)
+fxaaPass.material.uniforms['resolution'].value.set(
+    1 / (window.innerWidth * renderer.getPixelRatio()),
+    1 / (window.innerHeight * renderer.getPixelRatio())
+)
+composer.addPass(fxaaPass)
+
+const outputPass = new OutputPass()
+composer.addPass(outputPass)
+
 
 const mouse = { x: 0, y: 0 }
 const targetCamera = {
@@ -130,5 +158,9 @@ window.addEventListener('resize', () => {
 })
 
 if (devMode) {
+    const pointLightHelper = new THREE.PointLightHelper(pointLightFire, .1)
+    const pointLightSideHelper = new THREE.PointLightHelper(pointLightSide, .1)
+    const pointLightSide2Helper = new THREE.PointLightHelper(pointLightSide2, .1)
 
+    scene.add(pointLightHelper, pointLightSideHelper, pointLightSide2Helper)
 }
