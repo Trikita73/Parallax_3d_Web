@@ -41,14 +41,30 @@ const processModel = (gltf) => {
         }
     })
     scene.add(gltf.scene)
+    hiderPreloader()
 } 
 
+
+const customPreloader = document.getElementById('preloader')
+
+function hiderPreloader() {
+    if (!customPreloader) return
+    let opacity = 1
+    const fadeInterval = setInterval(() => {
+        opacity -= .05
+        customPreloader.style.opacity = opacity
+        if (opacity <= 0) {
+            clearInterval(fadeInterval)
+            customPreloader.style.display = 'none'
+        }
+    }, 30)
+}
 
 loader.load(
     'models/scene.glb',
     processModel,
     (progress) => {
-
+         customPreloader.textContent =  `Progress: ${Math.round((progress.loaded / progress.total) * 100)}%`
     },
     (error) => {
         console.error("Ошибка загрузки модел:", error)
