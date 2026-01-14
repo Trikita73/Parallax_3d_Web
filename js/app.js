@@ -8,7 +8,19 @@ import { OutputPass } from 'three/addons/postprocessing/OutputPass.js'
 import { FXAAShader } from 'three/addons/shaders/FXAAShader.js'
 import { VignetteShader } from 'three/addons/shaders/VignetteShader.js'
 
+import Lenis from '../vendor/lenis/dist/lenis.mjs'
+
 const devMode = false
+
+const lenis = new Lenis()
+function raf(time) {
+    lenis.raf(time)
+
+    requestAnimationFrame(raf) 
+}
+requestAnimationFrame(raf)
+
+
 
 const config = {
   lighting: { 

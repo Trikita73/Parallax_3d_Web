@@ -24,6 +24,7 @@ body {
     font-size: 14px;
     line-height: 140%;
     padding-bottom: 100vh;
+    margin-top: -8vh;
 }
 
 header {
@@ -60,4 +61,47 @@ canvas {
     font-size: 24px;
     z-index: 1000;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    max-width: 900px;
+    margin: -30vh auto auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid var(--color-border);
+    border-top: none;
+    margin-bottom: 60px;
+    padding-bottom: 42px;
+}
+
+.logo {
+    margin-top: -60px;
+}
+
+.description {
+    max-width: 420px;
+    margin: 40px 0 60px;
+}
+
+.brands {
+    display: flex;
+    gap: var(--gap);
+    align-items: center;
+}
+
+.brands img {
+    max-width: 78.88px;
+}
+
+.info {
+    max-width: 520px;
+    text-align: center;
+    margin: auto;
+    opacity: .32;
+}
+
+.info p {
+    margin-bottom: 20px;
 }
