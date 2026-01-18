@@ -167,7 +167,18 @@ const initialScrollXZValue = 5
 let scrollYvalue = initialScrollYValue
 let scrollXZValue = initialScrollXZValue
 
+window.addEventListener('scroll', () => {
+    const scrollYPosition = window.scrollY / window.innerHeight
+    scrollYvalue = initialScrollYValue - Math.min(scrollYPosition, .5)
+    scrollXZValue = initialScrollXZValue - Math.min(scrollYPosition, 2)
 
+    const scrollProgress = Math.min(scrollYPosition, 1)
+    const blurValue = Math.min(scrollProgress * 10, 10)
+    const opacityValue = 1 - Math.min(scrollProgress, 1)
+
+    document.documentElement.style.setProperty('--scroll-blur', `${blurValue}px`)
+    document.documentElement.style.setProperty('--scroll-opacity', opacityValue)
+})
 
 const animate = () => {
   requestAnimationFrame(animate)
