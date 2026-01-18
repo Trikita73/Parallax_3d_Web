@@ -16,6 +16,16 @@ const lenis = new Lenis()
 function raf(time) {
     lenis.raf(time)
 
+
+    const scroll = lenis.scroll
+    const header = document.getElementById('mainHeader')
+    if(header) {
+        const speed = -.45
+        const yPos = -(scroll * speed)
+        header.style.transform = `translateY(${yPos}px)`
+    }
+
+
     requestAnimationFrame(raf) 
 }
 requestAnimationFrame(raf)
@@ -156,6 +166,8 @@ const initialScrollXZValue = 5
 
 let scrollYvalue = initialScrollYValue
 let scrollXZValue = initialScrollXZValue
+
+
 
 const animate = () => {
   requestAnimationFrame(animate)

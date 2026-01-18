@@ -48,6 +48,7 @@ header::before {
 canvas {
     display: block;
     position: absolute;
+    top: -1px;
 }
 
 #preloader {
